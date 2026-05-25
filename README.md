@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./assets/logo.png" align="right" alt="logo" width="200px"/>
+    <img src="./assets/logo.png" align="right" alt="logo" width="400px"/>
 </div>
 
 # SKANF
