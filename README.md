@@ -5,7 +5,7 @@
 # SKANF
 
 [![arXiv](https://img.shields.io/badge/arXiv-2504.13398-b31b1b?logo=arxiv)](https://arxiv.org/abs/2504.13398)
-[![Docker Image](https://img.shields.io/badge/docker-dockerofsyang%2Fskanf:latest-blue?logo=docker)](https://hub.docker.com/r/dockerofsyang/skanf)
+[![Docker Image](https://img.shields.io/badge/skanf:latest-blue?logo=docker)](https://hub.docker.com/r/dockerofsyang/skanf)
 
 
 A tool for detecting asset management vulnerabilities in closed-source and obfuscated EVM smart contracts.
