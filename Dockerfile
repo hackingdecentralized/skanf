@@ -84,15 +84,15 @@ ENV PATH="$CONDA_DIR/envs/greed/bin:$CONDA_DIR/bin:$PATH"
 RUN python --version && python3 --version && pip --version
 RUN python -m pip install --upgrade pip setuptools wheel
 
-
-COPY ./skanf /opt/skanf
-COPY ./gigahorse-skanf /opt/gigahorse-skanf
-COPY ./greed-skanf /opt/greed
+COPY . /opt/skanf
+RUN git clone https://github.com/hackingdecentralized/greed-skanf.git /opt/greed 
 RUN chmod +x /opt/greed/setup.sh
 
 RUN source $CONDA_DIR/etc/profile.d/conda.sh && \
     conda activate greed && \
     cd /opt/greed && \
     bash /opt/greed/setup.sh -j "$(nproc)"
+
+WORKDIR /opt/skanf
 
 CMD ["/bin/bash", "-l"]

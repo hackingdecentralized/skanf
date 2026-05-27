@@ -4,17 +4,80 @@
 
 # SKANF
 
+[![arXiv](https://img.shields.io/badge/arXiv-2504.13398-b31b1b?logo=arxiv)](https://arxiv.org/abs/2504.13398)
+[![Docker Image](https://img.shields.io/badge/docker-dockerofsyang%2Fskanf:latest-blue?logo=docker)](https://hub.docker.com/r/dockerofsyang/skanf)
+
+
 A tool for detecting asset management vulnerabilities in closed-source and obfuscated EVM smart contracts.
 
 ## Installation
 
+### Docker image
+
+The easiest way to run SKANF is through the prebuilt Docker image:
+
+```shell
+docker pull dockerofsyang/skanf:latest
+```
+
+Set the RPC endpoint and network:
+
+```shell
+export WEB3_PROVIDER=http://localhost:8545
+export NETWORK=ETH
+export SKANF_IMAGE=dockerofsyang/skanf:latest
+```
+
+On Linux, SKANF should be run with Docker host networking so that the container can access an RPC node running on the host machine:
+
+```shell
+docker run --rm -it --network host \
+  -e WEB3_PROVIDER="$WEB3_PROVIDER" \
+  -e NETWORK="$NETWORK" \
+  "$SKANF_IMAGE" \
+  bash
+```
+
+If your RPC node is not running on the local machine, replace `WEB3_PROVIDER` with the corresponding RPC endpoint.
+
+### Build from source
+
+You can also build the Docker image locally from this repository:
+
+```shell
+docker build -t skanf:latest .
+```
+
+Then set:
+
+```shell
+export WEB3_PROVIDER=http://localhost:8545
+export NETWORK=ETH
+export SKANF_IMAGE=skanf:latest
+```
+
+Run the locally built image with:
+
+```shell
+docker run --rm -it --network host \
+  -e WEB3_PROVIDER="$WEB3_PROVIDER" \
+  -e NETWORK="$NETWORK" \
+  "$SKANF_IMAGE" \
+  bash
+```
 
 Run the following commands to configure the RPC node and network:
+
+### Local setup
+
+If you have installed the required dependencies locally, including greed and Gigahorse, configure the RPC node and network as follows:
 
 ```shell
 export WEB3_PROVIDER=http://localhost:8545
 export NETWORK=ETH
 ```
+
+Here, `WEB3_PROVIDER` should point to an Ethereum RPC endpoint. If the RPC node runs on the same machine, `http://localhost:8545` can be used. Otherwise, replace it with the corresponding RPC URL.
 
 ## Vulnerability Detection
 
