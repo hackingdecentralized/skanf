@@ -85,7 +85,7 @@ RUN python --version && python3 --version && pip --version
 RUN python -m pip install --upgrade pip setuptools wheel
 
 COPY . /opt/skanf
-RUN git clone https://github.com/hackingdecentralized/greed-skanf.git /opt/greed 
+RUN git clone --branch skanf https://github.com/hackingdecentralized/greed-skanf.git /opt/greed 
 RUN chmod +x /opt/greed/setup.sh
 
 RUN source $CONDA_DIR/etc/profile.d/conda.sh && \

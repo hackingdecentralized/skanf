@@ -70,7 +70,8 @@ Run the following commands to configure the RPC node and network:
 
 ### Local setup
 
-If you have installed the required dependencies locally, including greed and Gigahorse, configure the RPC node and network as follows:
+SKANF depends on custom forks of [`greed`](https://github.com/hackingdecentralized/greed-skanf) and [`Gigahorse`](https://github.com/hackingdecentralized/gigahorse-skanf), rather than the upstream versions. If you have installed these SKANF-compatible dependencies locally, configure the RPC node and network as follows:
+
 
 ```shell
 export WEB3_PROVIDER=http://localhost:8545
