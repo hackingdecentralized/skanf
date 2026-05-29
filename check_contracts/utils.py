@@ -10,15 +10,18 @@ from web3.middleware import geth_poa_middleware
 
 from constants import *
 
-if os.environ.get('WEB3_PROVIDER', None):
-    w3 = Web3(Web3.HTTPProvider(os.environ['WEB3_PROVIDER']))
-else:
-    w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+_WEB3_PROVIDER = os.environ.get('WEB3_PROVIDER') or 'http://127.0.0.1:8545'
+w3 = Web3(Web3.HTTPProvider(_WEB3_PROVIDER))
 
 if os.environ.get('NETWORK', "ETH") != "ETH":
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-assert(w3.is_connected())
+if not w3.is_connected():
+    raise RuntimeError(
+        f"Could not connect to RPC at {_WEB3_PROVIDER}. "
+        "Set WEB3_PROVIDER to a reachable Ethereum JSON-RPC endpoint "
+        "(e.g. export WEB3_PROVIDER=https://mainnet.infura.io/v3/<KEY>)."
+    )
 
 
 # Set up logging

@@ -46,7 +46,7 @@ if __name__ == '__main__':
         sys.exit(0)
 
     if args.mode is None:
-        mode = "concolic" if args.hash is not None else "basline"
+        mode = "concolic" if args.hash is not None else "baseline"
     else:
         mode = args.mode
     

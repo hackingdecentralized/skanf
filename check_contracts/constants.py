@@ -4,8 +4,14 @@ import os
 # Global variables
 BLOCK_REF = -1
 
-WORKDIR = "../AnalysisData/"
-CONSTANT_DIR = "../constants/"
+# Repo root, resolved from this file so paths work regardless of cwd.
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+
+# Analysis output directory. Override with SKANF_WORKDIR.
+WORKDIR = os.environ.get("SKANF_WORKDIR") or os.path.join(_REPO_ROOT, "AnalysisData")
+
+# Bundled JSON constants (signature.json, address.json) live in <repo>/constants.
+CONSTANT_DIR = os.path.join(_REPO_ROOT, "constants")
 
 # 30 minutes for taint analysis
 TIMEOUT_TAINT_ANALYSIS = 60 * 2
