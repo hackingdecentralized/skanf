@@ -1,6 +1,6 @@
 # SKANF Quick Start
 
-This document covers everything an evaluator or new user needs to install SKANF, run the pipeline end-to-end, and interpret the outputs. For a high-level description of the project, see the [README](./README.md).
+This document covers everything an evaluator or new user needs to run the pipeline end-to-end, and interpret the outputs. For a high-level description of the project, see the [README](./README.md).
 
 ---
 
@@ -14,7 +14,7 @@ This document covers everything an evaluator or new user needs to install SKANF,
 
 ## Quick Start
 
-> **For first-time users:** we provide a deliberately vulnerable demo contract on the Ethereum Sepolia testnet for an end-to-end exercise. The demo contract uses calldata-controlled control flow before making an ERC20 transfer.
+> **For first-time users:** we provide a deliberately vulnerable [demo contract](https://sepolia.etherscan.io/address/0x51006779Ac130AaBCDb49b1210016eeb9ade85A2) on the Ethereum Sepolia testnet for an end-to-end exercise. The demo contract uses calldata-controlled control flow before making an ERC20 transfer.
 >
 > Demo contract on Sepolia:
 >
