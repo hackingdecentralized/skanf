@@ -3,7 +3,10 @@ import os
 import requests
 
 from web3 import Web3, HTTPProvider
-from web3.middleware import geth_poa_middleware
+try:
+    from web3.middleware import ExtraDataToPOAMiddleware as geth_poa_middleware
+except ImportError:
+    from web3.middleware import geth_poa_middleware
 
 from .concrete_call import ConcreteCall
 
@@ -33,7 +36,7 @@ def get_internal_calls(tx_hash, contract_addr):
                 "trace",
             ]
         ],
-        "id": 1,
+        "id": w3.eth.chain_id,
         "jsonrpc": "2.0"
     })
     headers = {

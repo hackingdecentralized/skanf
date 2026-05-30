@@ -40,7 +40,7 @@ with open(os.path.join(CONSTANT_DIR, "address.json"), "r") as f:
 SENSITIVE_ADDRESSES = sensitive_original_addresses | set([i.lower() for i in sensitive_original_addresses])
 
 # Test address
-TEST_SENDER = "0x0000000000000000000000000000000000000000"
+TEST_SENDER = "0x0000000000000000000000000000000000000001"
 
 # Colors for the terminal
 class bcolors:

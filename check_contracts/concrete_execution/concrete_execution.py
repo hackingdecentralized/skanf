@@ -1,5 +1,4 @@
 import logging
-import networkx as nx
 
 from greed.TAC import TAC_Jump, TAC_Call
 from greed.exploration_techniques import DirectedSearch, HeartBeat, Prioritizer
@@ -29,6 +28,8 @@ def execute_call(call):
     to_addr = call.to_addr
     calldata = call.calldata
     value = call.value
+
+    context._w3 = w3
 
     env = get_evm_at_block(block_number)
     plugin = LogPlugin(target_contract=to_addr, new_caller=from_addr, new_origin=origin, overwrite_caller=True, overwrite_origin=True)

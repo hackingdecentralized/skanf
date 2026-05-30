@@ -6,6 +6,7 @@ import web3
 
 from utils import *
 from check_call import *
+from concrete_execution import *
 
 LOGGING_FORMAT = "%(levelname)s | %(message)s"
 logging.basicConfig(level=logging.INFO, format=LOGGING_FORMAT)
@@ -17,7 +18,7 @@ log = logging.getLogger("skanf - main")
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(description='Check if a contract is exploitable')
     arg_parser.add_argument('--address', type=str, required=True)
-    arg_parser.add_argument('--block', type=str, required=True)
+    arg_parser.add_argument('--block', type=str, required=False, default=str(w3.eth.block_number))
     arg_parser.add_argument('--hash', type=str, required=False)
     arg_parser.add_argument('--mode', type=str, required=False)
     args = arg_parser.parse_args()
@@ -27,7 +28,7 @@ if __name__ == '__main__':
     block_ref = args.block
 
     if block_ref != "latest":
-        if block_ref.isdigit():
+        if  block_ref.isdigit():
             block_ref = int(block_ref)
         else:
             print("Block ref must be a number or latest")

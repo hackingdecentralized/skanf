@@ -40,6 +40,8 @@ def main():
 
     args = arg_parser.parse_args()
 
+    context._w3 = w3
+
     target = normalize_contract_address(args.target)
 
     a1 = get_evm_at_block(args.block)
