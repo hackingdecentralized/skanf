@@ -120,7 +120,7 @@ See **[quickstart.md](./quickstart.md)** for:
 | Flag | Required | Type | Description |
 |---|---|---|---|
 | `--address` | yes | hex string | Contract address to analyze, checksummed or lowercase. |
-| `--block` | yes | int or `latest` | Block number at which to fetch the bytecode. |
+| `--block` | no | int  | Block number at which to fetch the bytecode. Defaults to latest when omitted. |
 | `--mode` | no | string | Output suffix; the detector writes `output_<mode>.json`. This is useful for keeping baseline and concolic results side-by-side. Defaults to `concolic` if `--hash` is set, otherwise `baseline`. |
 | `--hash` | no | tx hash | Run the **concolic** path: replay the historical transaction `<hash>` and check only the calls it touched. Without `--hash`, the detector runs purely symbolic exploration over all reachable calls. |
 
@@ -140,7 +140,7 @@ python3 main.py --address 0xABC... --block 20000000 \
 | Flag | Required | Type | Description |
 |---|---|---|---|
 | `--contract` | yes | hex string | The contract address that was previously analyzed by the detector. |
-| `--block` | yes | int | Block at which to validate the synthesized exploit. |
+| `--block` | no | int | Block at which to validate the synthesized exploit. Defaults to latest when omitted. |
 
 The exploit generator reads `output_eval_baseline.json` produced by the detection phase, walks its `verified` array, symbolically generates calldata that satisfies each verified call's preconditions, and replays the calldata against a forked EVM to confirm balance changes. Successful exploits are written to `Exploits/<contract>.<block>.json`.
 
