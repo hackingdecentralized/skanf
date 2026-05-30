@@ -29,6 +29,10 @@ This document covers everything an evaluator or new user needs to run the pipeli
 Run the detector:
 
 ```shell
+# update Web3 provider
+export WEB3_PROVIDER="https://sepolia.gateway.tenderly.co/
+<YOUR_TENDERLY_NODE_ACCESS_KEY>" # or your local Sepolia node
+
 # baseline
 cd check_contracts
 python3 main.py --address 0x51006779Ac130AaBCDb49b1210016eeb9ade85A2 --mode eval_baseline
