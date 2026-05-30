@@ -82,9 +82,11 @@ ENV VIRTUAL_ENV=$CONDA_DIR/envs/greed
 ENV PATH="$CONDA_DIR/envs/greed/bin:$CONDA_DIR/bin:$PATH"
 
 RUN python --version && python3 --version && pip --version
-RUN python -m pip install --upgrade pip setuptools wheel
+# Avoid setuptools 81 which breaks ethpwn installation
+RUN python -m pip install "setuptools<81"
 
 COPY . /opt/skanf
+RUN python -m pip install -r /opt/skanf/requirements.txt
 RUN git clone --branch skanf https://github.com/hackingdecentralized/greed-skanf.git /opt/greed 
 RUN chmod +x /opt/greed/setup.sh
 
