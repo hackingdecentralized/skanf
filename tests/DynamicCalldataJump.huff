@@ -1,0 +1,59 @@
+#define macro MAIN() = takes (0) returns (0) {
+    // calldata[0x04:0x24] controls the jump target.
+    // For this bytecode, the transfer_entry JUMPDEST is at PC = 0x04.
+    0x04 calldataload
+    jump
+
+    transfer_entry:
+        // Build calldata for ERC20 transfer(address,uint256)
+        // selector = 0xa9059cbb
+        0xa9059cbb 0xe0 shl
+        0x00 mstore
+
+        // transfer(to, 1)
+        // to is calldata word at 0x44
+        0x44 calldataload
+        0x04 mstore
+
+        // amount = 1 smallest token unit
+        0x01
+        0x24 mstore
+
+        // call token.transfer(to, 1)
+        // CALL stack order before `call`:
+        // retSize, retOffset, argsSize, argsOffset, value, to, gas
+        0x20
+        0x00
+        0x44
+        0x00
+        0x00
+        0x24 calldataload
+        gas
+        call
+
+        // Revert if CALL failed
+        iszero
+        fail jumpi
+
+        // Accept tokens that return no data
+        returndatasize
+        iszero
+        ok jumpi
+
+        // If return data exists, require at least 32 bytes
+        returndatasize
+        0x20
+        lt
+        fail jumpi
+
+        // Require returned bool != 0
+        0x00 mload
+        ok jumpi
+
+    fail:
+        0x00 0x00 revert
+
+    ok:
+        0x01 0x00 mstore
+        0x20 0x00 return
+}
